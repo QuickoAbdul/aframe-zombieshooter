@@ -13,10 +13,6 @@
                   document.body.addEventListener('mousedown', () => { this.el.emit('shoot'); });
                 }
               });
-          
-              /**
-               * Change color when hit.
-               */
               AFRAME.registerComponent('hit-handler', {
                 dependencies: ['material'],
                 init: function () {
@@ -34,6 +30,8 @@
                   el.addEventListener('die', () => {
                     color.setRGB(1, 0, 0);
                     el.components.material.material.color.copy(color);
+                    el.object3D.visible = false;
+                    el.parentNode.removeChild(el);
                   });
                 }
               });
@@ -43,6 +41,12 @@
     </head>
     <body>
         <a-scene>
+            <a-entity id="bulletTemplate" bullet geometry="primitive: sphere; radius: 0.1" material="color: yellow"></a-entity>
+            <a-entity class="target" target="healthPoints: 10" geometry="primitive: box" material="color: teal" position="0 1 -4" hit-handler></a-entity>
+            <a-camera id="camera" position="0 2 0" shooter click-to-shoot>
+                <a-cursor>
+                </a-cursor>
+            </a-camera>
             <a-assets>
                 <!--SkysCrapper-->
                 <a-asset-item id="skyscraperA-obj" src="/assets/skyscraperA.obj"></a-asset-item>
@@ -97,15 +101,7 @@
                 <!--police-->
                 <a-asset-item id="police-obj" src="/assets/police.obj"></a-asset-item>
                 <a-asset-item id="police-mtl" src="/assets/police.mtl"></a-asset-item>
-            </a-assets>    
-
-            <a-entity id="bulletTemplate" bullet geometry="primitive: sphere; radius: 0.1" material="color: yellow"></a-entity>
-            <a-entity class="target" target="healthPoints: 10" geometry="primitive: box" material="color: teal" position="0 0 -4" hit-handler></a-entity>
-            <a-camera id="camera" position="0 2 0" shooter click-to-shoot>
-                <a-cursor>
-                </a-cursor>
-            </a-camera>
-            
+            </a-assets>  
             <a-sky color="#ECECEC"></a-sky>
                                             <!--    X Y Z               -->
             <a-entity id="skyscraperA-1" rotation="0 0 0" scale="8 8 8" obj-model="obj: #skyscraperA-obj; mtl: #skyscraperA-mtl" position="9.69602 0 14.26247" ></a-entity>
@@ -118,6 +114,7 @@
             <a-entity id="skyscraperF-2" rotation="179.9998479605043 0 -179.9998479605043" scale="8 8 8" obj-model="obj: #skyscraperF-obj; mtl: #skyscraperF-mtl" position="10.61091 -0.00007 -16.33228"></a-entity>
             <a-entity id="skyscraperF-3" rotation="179.9998479605043 0 -179.9998479605043" scale="8 8 8" obj-model="obj: #skyscraperF-obj; mtl: #skyscraperF-mtl" position="10.61091 -0.00007 -16.33228"></a-entity>
 
+            <a-entity id="roof_center" rotation="0 0 0" scale="200 1 200" obj-model="obj: #roofcenter-obj; mtl: #roofcenter-mtl" position="0 0 0"></a-entity>
             <a-entity id="roof_side" rotation="0 -0.6165025875607658 0" scale="105 8 10" obj-model="obj: #roof_side-obj; mtl: #roof_side-mtl" position="8.46862 18.28335 -53.70982"></a-entity>
             
             <a-entity id="detail_umbrella-1" scale="7 7 7" obj-model="obj: #detail_umbrella.obj; mtl: #detail_umbrella.mtl" position="16.68278 0 14.81127"></a-entity>
