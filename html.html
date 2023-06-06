@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jeu</title>
+        <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+        <script src="/aframe-super-shooter-kit.js"></script>
+        <script>
+            AFRAME.registerComponent('click-to-shoot', {
+                init: function () {
+                  document.body.addEventListener('mousedown', () => { this.el.emit('shoot'); });
+                }
+              });
+          
+              /**
+               * Change color when hit.
+               */
+              AFRAME.registerComponent('hit-handler', {
+                dependencies: ['material'],
+                init: function () {
+                  var color;
+                  var el = this.el;
+          
+                  color = new THREE.Color();
+                  color.set('#666');
+                  el.components.material.material.color.copy(color);
+                  el.addEventListener('hit', () => {
+                    color.addScalar(0.05);
+                    el.components.material.material.color.copy(color);
+                  });
+          
+                  el.addEventListener('die', () => {
+                    color.setRGB(1, 0, 0);
+                    el.components.material.material.color.copy(color);
+                  });
+                }
+              });
+
+              /*<a-entity id="gun" shooter geometry="primitive: box; width: 0.1; height: 0.1; depth: 0.3" material="color: red" click-to-shoot position="0 0 -1"></a-entity> */
+        </script>
+    </head>
+    <body>
+        <a-scene>
+            <a-assets>
+                <!--SkysCrapper-->
+                <a-asset-item id="skyscraperA-obj" src="/assets/skyscraperA.obj"></a-asset-item>
+                <a-asset-item id="skyscraperA-mtl" src="/assets/skyscraperA.mtl"></a-asset-item>
+                <a-asset-item id="skyscraperB-obj" src="/assets/skyscraperB.obj"></a-asset-item>
+                <a-asset-item id="skyscraperB-mtl" src="/assets/skyscraperB.mtl"></a-asset-item>
+                <a-asset-item id="skyscraperC-obj" src="/assets/skyscraperC.obj"></a-asset-item>
+                <a-asset-item id="skyscraperC-mtl" src="/assets/skyscraperC.mtl"></a-asset-item>
+                <a-asset-item id="skyscraperD-obj" src="/assets/skyscraperD.obj"></a-asset-item>
+                <a-asset-item id="skyscraperD-mtl" src="/assets/skyscraperD.mtl"></a-asset-item>
+                <a-asset-item id="skyscraperE-obj" src="/assets/skyscraperE.obj"></a-asset-item>
+                <a-asset-item id="skyscraperE-mtl" src="/assets/skyscraperE.mtl"></a-asset-item>
+                <a-asset-item id="skyscraperF-obj" src="/assets/skyscraperF.obj"></a-asset-item>
+                <a-asset-item id="skyscraperF-mtl" src="/assets/skyscraperF.mtl"></a-asset-item>
+    
+                <!--Roof -->
+                <a-asset-item id="roofcenter-obj" src="/assets/roof_center.obj"></a-asset-item>
+                <a-asset-item id="roofcenter-mtl" src="/assets/roof_center.mtl"></a-asset-item>
+                <a-asset-item id="roof_side-obj" src="/assets/roof_side.obj"></a-asset-item>
+                <a-asset-item id="roof_side-mtl" src="/assets/roof_side.mtl"></a-asset-item>
+    
+                <!--detail_umbrella-->
+                <a-asset-item id="detail_umbrella.obj" src="/assets/detail_umbrella.obj"></a-asset-item>
+                <a-asset-item id="detail_umbrella.mtl" src="/assets/detail_umbrella.mtl"></a-asset-item>
+                
+                <!--large_building-->
+                <a-asset-item id="large_buildingA-obj" src="/assets/large_buildingA.obj"></a-asset-item>
+                <a-asset-item id="large_buildingA-mtl" src="/assets/large_buildingA.mtl"></a-asset-item>
+                <a-asset-item id="large_buildingB-obj" src="/assets/large_buildingB.obj"></a-asset-item>
+                <a-asset-item id="large_buildingB-mtl" src="/assets/large_buildingB.mtl"></a-asset-item>
+                <a-asset-item id="large_buildingC-obj" src="/assets/large_buildingC.obj"></a-asset-item>
+                <a-asset-item id="large_buildingC-mtl" src="/assets/large_buildingC.mtl"></a-asset-item>
+                <a-asset-item id="large_buildingD-obj" src="/assets/large_buildingD.obj"></a-asset-item>
+                <a-asset-item id="large_buildingD-mtl" src="/assets/large_buildingD.mtl"></a-asset-item>
+                <a-asset-item id="large_buildingE-obj" src="/assets/large_buildingE.obj"></a-asset-item>
+                <a-asset-item id="large_buildingE-mtl" src="/assets/large_buildingE.mtl"></a-asset-item>
+                <a-asset-item id="large_buildingF-obj" src="/assets/large_buildingF.obj"></a-asset-item>
+                <a-asset-item id="large_buildingF-mtl" src="/assets/large_buildingF.mtl"></a-asset-item>
+    
+                <!--ambulance-->
+                <a-asset-item id="ambulance-obj" src="/assets/ambulance.obj"></a-asset-item>
+                <a-asset-item id="ambulance-mtl" src="/assets/ambulance.mtl"></a-asset-item>
+    
+                <!--taxi-->
+                <a-asset-item id="taxi-obj" src="/assets/taxi.obj"></a-asset-item>
+                <a-asset-item id="taxi-mtl" src="/assets/taxi.mtl"></a-asset-item>
+    
+                <!--sedan-->
+                <a-asset-item id="sedan-obj" src="/assets/sedan.obj"></a-asset-item>
+                <a-asset-item id="sedan-mtl" src="/assets/sedan.mtl"></a-asset-item>
+    
+                <!--police-->
+                <a-asset-item id="police-obj" src="/assets/police.obj"></a-asset-item>
+                <a-asset-item id="police-mtl" src="/assets/police.mtl"></a-asset-item>
+            </a-assets>    
+
+            <a-entity id="bulletTemplate" bullet geometry="primitive: sphere; radius: 0.1" material="color: yellow"></a-entity>
+            <a-entity class="target" target="healthPoints: 10" geometry="primitive: box" material="color: teal" position="0 0 -4" hit-handler></a-entity>
+            <a-camera id="camera" position="0 2 0" shooter click-to-shoot>
+                <a-cursor>
+                </a-cursor>
+            </a-camera>
+            
+            <a-sky color="#ECECEC"></a-sky>
+                                            <!--    X Y Z               -->
+            <a-entity id="skyscraperA-1" rotation="0 0 0" scale="8 8 8" obj-model="obj: #skyscraperA-obj; mtl: #skyscraperA-mtl" position="9.69602 0 14.26247" ></a-entity>
+            <a-entity id="skyscraperB-1" rotation="0 180 0" scale="8 8 8" obj-model="obj: #skyscraperB-obj; mtl: #skyscraperB-mtl" position="-3.03867 0 -16.6849" dynamic-body="shape: box; mass: 2"></a-entity>
+            <a-entity id="skyscraperC-1" rotation="179.9998479605043 -90 179.9998479605043" scale="8 8 2" obj-model="obj: #skyscraperC-obj; mtl: #skyscraperC-mtl" position="40 0 4.889"></a-entity>
+            <a-entity id="skyscraperD-1" rotation="179.9998479605043 0 179.9998479605043" scale="8 8 8" obj-model="obj: #skyscraperD-obj; mtl: #skyscraperD-mtl" position="24.40988 0 -30.03783"></a-entity>
+            <a-entity id="skyscraperE-1" rotation="0 -90 0" scale="8 8 8" obj-model="obj: #skyscraperE-obj; mtl: #skyscraperE-mtl" position="-27.24777 0 2.8442"></a-entity>
+            <a-entity id="skyscraperE-3" rotation="0 -29.144644164919583 0" scale="8 8 8" obj-model="obj: #skyscraperE-obj; mtl: #skyscraperE-mtl" position="-34.58884 0 30.80714"></a-entity>
+            <a-entity id="skyscraperF-1" rotation="0 90 0" scale="8 8 8" obj-model="obj: #skyscraperF-obj; mtl: #skyscraperF-mtl" position="21.54007 -0.00007 -4.94606"></a-entity>
+            <a-entity id="skyscraperF-2" rotation="179.9998479605043 0 -179.9998479605043" scale="8 8 8" obj-model="obj: #skyscraperF-obj; mtl: #skyscraperF-mtl" position="10.61091 -0.00007 -16.33228"></a-entity>
+            <a-entity id="skyscraperF-3" rotation="179.9998479605043 0 -179.9998479605043" scale="8 8 8" obj-model="obj: #skyscraperF-obj; mtl: #skyscraperF-mtl" position="10.61091 -0.00007 -16.33228"></a-entity>
+
+            <a-entity id="roof_side" rotation="0 -0.6165025875607658 0" scale="105 8 10" obj-model="obj: #roof_side-obj; mtl: #roof_side-mtl" position="8.46862 18.28335 -53.70982"></a-entity>
+            
+            <a-entity id="detail_umbrella-1" scale="7 7 7" obj-model="obj: #detail_umbrella.obj; mtl: #detail_umbrella.mtl" position="16.68278 0 14.81127"></a-entity>
+            <a-entity id="detail_umbrella-2" scale="7 7 7" obj-model="obj: #detail_umbrella.obj; mtl: #detail_umbrella.mtl" position="28.78936 0 5.23176"></a-entity>
+            <a-entity id="detail_umbrella-3" scale="7 7 7" obj-model="obj: #detail_umbrella.obj; mtl: #detail_umbrella.mtl" position="23.83629 0 7.67434"></a-entity>
+            <a-entity id="detail_umbrella-4" scale="7 7 7" obj-model="obj: #detail_umbrella.obj; mtl: #detail_umbrella.mtl" position="28.74238 0 10.72823"></a-entity>
+            <a-entity id="detail_umbrella-5" scale="7 7 7" obj-model="obj: #detail_umbrella.obj; mtl: #detail_umbrella.mtl" position="19.09529 0 9.80821"></a-entity>
+            <a-entity id="detail_umbrella-6" scale="7 7 7" obj-model="obj: #detail_umbrella.obj; mtl: #detail_umbrella.mtl" position="25.16163 0 13.07678"></a-entity>
+            <a-entity id="detail_umbrella-7" scale="7 7 7" obj-model="obj: #detail_umbrella.obj; mtl: #detail_umbrella.mtl" position="23.93377 0 3.48124"></a-entity>
+            <a-entity id="detail_umbrella-8" scale="7 7 7" obj-model="obj: #detail_umbrella.obj; mtl: #detail_umbrella.mtl" position="22.33092 0 16.5493"></a-entity>
+
+            <a-entity id="large_buildingA-1" rotation="0 0 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="8.87331 0 -40"></a-entity>
+            <a-entity id="large_buildingA-2" rotation="0 0 0" scale="11.2334 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="29.84333 0 -40.31815"></a-entity>
+            <a-entity id="large_buildingA-3" rotation="0 -90 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="40 0 -29.59351"></a-entity>
+            <a-entity id="large_buildingA-4" rotation="0 -90 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="40 0 19.8022"></a-entity>
+            <a-entity id="large_buildingA-5" rotation="0 0 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="29.31384 0 30"></a-entity>
+            <a-entity id="large_buildingA-6" rotation="0 0 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="-20.184 0 30"></a-entity>
+            <a-entity id="large_buildingA-7" rotation="0 0 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="-0.33298 0 30"></a-entity>
+            <a-entity id="large_buildingA-8" rotation="0 -90 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="-40 0 20.01808"></a-entity>
+            <a-entity id="large_buildingA-9" rotation="0 -90 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="-40 0 0.02927"></a-entity>
+            <a-entity id="large_buildingA-10" rotation="0 -90 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="-40 0 -19.948"></a-entity>
+            <a-entity id="large_buildingA-11" rotation="0 -90 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="40 -0.01 -9.82891"></a-entity>
+            <a-entity id="large_buildingA-12" rotation="0 0 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="-29.89059 0 -40"></a-entity>
+            <a-entity id="large_buildingA-13" rotation="0 -90 0" scale="6.05411 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="-40 0 -36.22527"></a-entity>
+            <a-entity id="large_buildingA-14" rotation="0 0 0" scale="10 10 1" obj-model="obj: #large_buildingA-obj; mtl: #large_buildingA-mtl" position="-10.474 0 -40"></a-entity>
+
+
+            <a-entity id="large_buildingB-1" rotation="0 45 0" scale="8 8 8" obj-model="obj: #large_buildingB-obj; mtl: #large_buildingB-mtl" position="31.87236 0 16.41669"></a-entity>
+            <a-entity id="large_buildingC-1" rotation="0 -90 0" scale="8 8 8" obj-model="obj: #large_buildingC-obj; mtl: #large_buildingC-mtl" position="-28.7896 0 14.49689"></a-entity>
+            <a-entity id="large_buildingC-2" rotation="0 180 0" scale="8 8 8" obj-model="obj: #large_buildingC-obj; mtl: #large_buildingC-mtl" position="-19 0 -33"></a-entity>
+            <a-entity id="large_buildingC-3" rotation="0 -90 0.8078704911344607" scale="8 8 8" obj-model="obj: #large_buildingC-obj; mtl: #large_buildingC-mtl" position="-30 0 -23.84371"></a-entity>
+            <a-entity id="large_buildingC-4" rotation="0 -90 0" scale="8 8 8" obj-model="obj: #large_buildingC-obj; mtl: #large_buildingC-mtl" position="-30 0 -16.07263"></a-entity>
+            <a-entity id="large_buildingC-5" rotation="0 0 0" scale="8 8 8" obj-model="obj: #large_buildingC-obj; mtl: #large_buildingC-mtl" position="22.48705 0 22.52006"></a-entity>
+            <a-entity id="large_buildingC-6" rotation="0 -90 0" scale="8 8 8" obj-model="obj: #large_buildingC-obj; mtl: #large_buildingC-mtl" position="-30 0 -8.59414"></a-entity>
+            <a-entity id="large_buildingD-1" rotation="0 -180 0" scale="8 8 8" obj-model="obj: #large_buildingD-obj; mtl: #large_buildingD-mtl" position="-6.745 0 -30.793"></a-entity>
+            <a-entity id="large_buildingE-1" rotation="0 0 0" scale="8 8 1" obj-model="obj: #large_buildingE-obj; mtl: #large_buildingE-mtl" position="14.57233 0 30"></a-entity>
+            <a-entity id="large_buildingF-1" rotation="0 0 0" scale="8 8 8" obj-model="obj: #large_buildingF-obj; mtl: #large_buildingF-mtl" position="-5.68667 0 22.715"></a-entity>
+            <a-entity id="large_buildingF-1" rotation="0 180 0" scale="8 8 8" obj-model="obj: #large_buildingF-obj; mtl: #large_buildingF-mtl" position="8.11946 0 -28.99223"></a-entity>
+            <a-entity id="large_buildingF-1" rotation="0 180 0" scale="8 8 8" obj-model="obj: #large_buildingF-obj; mtl: #large_buildingF-mtl" position="8.11946 0 -28.99223"></a-entity>
+
+            <a-entity id="ambulance-1" rotation="0 0 0" scale="2 2 2" obj-model="obj: #ambulance-obj; mtl: #ambulance-mtl" position="34.82506 0 -28.96444"></a-entity>
+            <a-entity id="taxi-1" rotation="0 -90 0" scale="2 2 2" obj-model="obj: #taxi-obj; mtl: #taxi-mtl" position="29.36948 0 -16.86595"></a-entity>
+            <a-entity id="taxi-2" rotation="0 180 0" scale="2 2 2" obj-model="obj: #taxi-obj; mtl: #taxi-mtl" position="-14.74374 0 -14.05576"></a-entity>
+            <a-entity id="taxi-3" rotation="0 180 0" scale="2 2 2" obj-model="obj: #taxi-obj; mtl: #taxi-mtl" position="-18.136 0 -14.064"></a-entity>
+            <a-entity id="taxi-4" rotation="0 180 0" scale="2 2 2" obj-model="obj: #taxi-obj; mtl: #taxi-mtl" position="-18.13622 0 -20.26148"></a-entity>
+            <a-entity id="taxi-5" rotation="0 180 0" scale="2 2 2" obj-model="obj: #taxi-obj; mtl: #taxi-mtl" position="-14.71702 0 -20.06051"></a-entity>
+            <a-entity id="taxi-6" rotation="0 180 0" scale="2 2 2" obj-model="obj: #taxi-obj; mtl: #taxi-mtl" position="-18.13622 0 23.10952"></a-entity>
+            <a-entity id="sedan-1" rotation="0 90 0" scale="2 2 2" obj-model="obj: #sedan-obj; mtl: #sedan-mtl" position="23.30704 0 -16.85277"></a-entity>
+            <a-entity id="sedan-2" rotation="0 180 0" scale="2 2 2" obj-model="obj: #sedan-obj; mtl: #sedan-mtl" position="-21.98649 0 23.09187"></a-entity>
+            <a-entity id="police-1" rotation="0 90 0"scale="2 2 2" obj-model="obj: #police-obj; mtl: #police-mtl" position="-36.03996 0 -3.79527"></a-entity>
+            <a-entity id="police-2" rotation="0 0 0"scale="2 2 2" obj-model="obj: #police-obj; mtl: #police-mtl" position="4.29475 0 25.60424"></a-entity>
+            <a-entity id="police-3" rotation="0 0 0"scale="2 2 2" obj-model="obj: #police-obj; mtl: #police-mtl" position="10.56954 0 25.46419"></a-entity>
+            <a-entity id="police-4" rotation="0 0 0"scale="2 2 2" obj-model="obj: #police-obj; mtl: #police-mtl" position="16.84798 0 25.50653"></a-entity>
+        </a-scene>
+
+    </body>
+</html>
