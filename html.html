@@ -46,10 +46,14 @@
         </script>
     </head>
     <body>
-        <a-scene physics="debug: true">
+        <a-scene >
             <a-entity id="bulletTemplate" bullet geometry="primitive: sphere; radius: 0.1" material="color: yellow"></a-entity>
-            <a-entity class="target" target="healthPoints: 10" geometry="primitive: box" material="color: teal" position="0 1 -0" hit-handler></a-entity>
-            <a-entity class="target" target="healthPoints: 10" geometry="primitive: box" material="color: teal" position="0 5 -0" hit-handler></a-entity>
+            <a-entity class="target" target="healthPoints: 10" geometry="" material="color: teal" position="-5.03294 1 -4.85396" hit-handler=""></a-entity>
+            <a-entity class="target" target="healthPoints: 10" geometry="" material="color: teal" position="-1.7008 1 -4.96105" hit-handler=""></a-entity>
+            <a-entity class="target" target="healthPoints: 10" geometry="" material="color: teal" position="-9.43624 1 -5.93002" hit-handler=""></a-entity>
+            <a-entity class="target" target="healthPoints: 10" geometry="" material="color: teal" position="-3.00675 1 -7.42458" hit-handler=""></a-entity>
+            <a-entity class="target" target="healthPoints: 10" geometry="" material="color: teal" position="1.70981 5 -6.96946" hit-handler=""></a-entity>
+            <a-entity class="target" target="healthPoints: 10" geometry="" material="color: teal" position="-4.12384 5 -6.07684" hit-handler=""></a-entity>
             
             <a-camera id="camera" position="0 2 0" shooter click-to-shoot>
               <a-cursor></a-cursor>
@@ -75,8 +79,6 @@
                 <!--Roof -->
                 <a-asset-item id="roofcenter-obj" src="/assets/roof_center.obj"></a-asset-item>
                 <a-asset-item id="roofcenter-mtl" src="/assets/roof_center.mtl"></a-asset-item>
-                <a-asset-item id="roof_side-obj" src="/assets/roof_side.obj"></a-asset-item>
-                <a-asset-item id="roof_side-mtl" src="/assets/roof_side.mtl"></a-asset-item>
     
                 <!--detail_umbrella-->
                 <a-asset-item id="detail_umbrella.obj" src="/assets/detail_umbrella.obj"></a-asset-item>
@@ -126,9 +128,7 @@
             <a-entity id="skyscraperF-3" rotation="180 0 -180" scale="8 8 8" obj-model="obj: #skyscraperF-obj; mtl: #skyscraperF-mtl" position="-4 -0.00007 4" body="type: static; mass: 5; shape: none;"shape__main="shape: box; offset: 0 0.8 0; halfExtents: 0.6 0.8 0.6;"></a-entity>
             <a-entity id="skyscraperF-4" rotation="180 0 -180" scale="8 8 8" obj-model="obj: #skyscraperF-obj; mtl: #skyscraperF-mtl" position="-13 -0.00007 4" body="type: static; mass: 5; shape: none;"shape__main="shape: box; offset: 0 0.8 0; halfExtents: 0.6 0.8 0.6;"></a-entity>
 
-
             <a-entity id="roof_center" rotation="0 0 0" scale="200 1 200" obj-model="obj: #roofcenter-obj; mtl: #roofcenter-mtl" position="0 0 0" body="type: static; mass: 5; shape: none;"shape__main="shape: box; halfExtents: 0.2 0.1 0.2;" ></a-entity>
-            <a-entity id="roof_side" rotation="0 -0.6165025875607658 0" scale="105 8 10" obj-model="obj: #roof_side-obj; mtl: #roof_side-mtl" position="8.46862 18.28335 -53.70982"></a-entity>
             
             <a-entity id="detail_umbrella-1" scale="7 7 7" obj-model="obj: #detail_umbrella.obj; mtl: #detail_umbrella.mtl" position="16.68278 1 14.81127" body="type: dynamic; mass: 5; shape: none;"shape__main="shape: box; offset: 0 0.2 0; halfExtents: 0.1 0.2 0.1;"></a-entity>
             <a-entity id="detail_umbrella-2" scale="7 7 7" obj-model="obj: #detail_umbrella.obj; mtl: #detail_umbrella.mtl" position="28.78936 0 5.23176"  body="type: dynamic; mass: 5; shape: none;"shape__main="shape: box; offset: 0 0.2 0; halfExtents: 0.1 0.2 0.1;"></a-entity>
