@@ -4,9 +4,8 @@ A-Frame Zombie Shooter is a work-in-progress project using the [A-Frame](https:/
 
 
 <p align="center">
-  <img src="![aframe](https://github.com/user-attachments/assets/04e77005-4075-4321-a54b-28842e51effb)" alt="GIF Description">
+  <img src="https://github.com/user-attachments/assets/04e77005-4075-4321-a54b-28842e51effb" alt="GIF Description">
 </p>
-
 
 ## 🚀 Objective
 
