@@ -1,35 +1,43 @@
 # A-Frame Zombie Shooter
 
-A-Frame Zombie Shooter est un projet en développement utilisant la bibliothèque [A-Frame](https://aframe.io/) pour créer un jeu de tir en réalité virtuelle directement accessible via un navigateur web.
+A-Frame Zombie Shooter is a work-in-progress project using the [A-Frame](https://aframe.io/) library to create a web-based virtual reality shooting game.
 
-## 🚀 Objectif
+![aframe](https://github.com/user-attachments/assets/04e77005-4075-4321-a54b-28842e51effb)
 
-Ce projet a pour but d'explorer et de tester les capacités d'A-Frame pour le développement de jeux web immersifs. L'utilisateur doit tirer sur des cibles dans un environnement interactif.
 
-## 📌 Statut
+## 🚀 Objective
 
-Le projet est toujours en développement et n'est pas encore finalisé.
+This project aims to explore and test A-Frame's capabilities for developing immersive web games. The user must shoot at targets in an interactive environment.
 
-## 🛠 Installation & Exécution
+## 📌 Status
 
-1. Installer un serveur local comme **five-server** :
+The project is still in development and is not yet finalized.
+
+## 🛠 Installation & Execution
+
+1. Install a local server like **five-server**:
 
    ```sh
    git clone https://github.com/QuickoAbdul/aframe-zombieshooter
    cd aframe-zombieshooter
+   ```
+   
+   In a terminal:
+
+   ```sh
    npm i -g five-server@latest
    five-server --port=8000
    ```
 
-   **OU** utiliser un serveur local comme **Live Server** sur Visual Studio Code.
+   **OR** use a local server like **Live Server** in Visual Studio Code.
 
-2. Ouvrir le fichier `index.html` dans votre navigateur via le serveur local.
+3. Open the `index.html` file in your browser via the local server.
 
-## 📜 Licence
+## 📜 License
 
-Ce projet est sous licence MIT.
+This project is licensed under the MIT License.
 
 ---
 
-📌 **Dépôt GitHub** : [A-Frame Zombie Shooter](https://github.com/QuickoAbdul/aframe-zombieshooter)
+📌 **GitHub Repository**: [A-Frame Zombie Shooter](https://github.com/QuickoAbdul/aframe-zombieshooter)
 
